@@ -1,0 +1,65 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout>
+  <main>
+    <section class="about-intro">
+      <p class="about-label">ABOUT</p>
+
+      <h1>Igniting Innovation</h1>
+
+      <p class="about-description">
+        Our strength lies in the collaboration between our talented teams and
+        esteemed clients. We cultivate a workplace that champions innovation,
+        promotes peak performance, and guarantees client satisfaction.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @layer components {
+    .about-intro {
+      text-align: center;
+      padding-block: 4rem 6rem;
+    }
+
+    .about-intro h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+
+      text-shadow:
+        2px 0 white,
+        -2px 0 white,
+        0 2px white,
+        0 -2px white;
+    }
+
+    .about-intro h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 4px;
+      background-color: var(--color-action);
+      z-index: -1;
+    }
+
+    .about-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .about-description {
+      max-width: 32rem;
+      margin: 2rem auto 0;
+      line-height: 1.5;
+    }
+  }
+</style>
