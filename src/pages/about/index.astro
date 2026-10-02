@@ -159,9 +159,11 @@ const valueCards = [
 
         <div class="team-members">
           {
-            employees
-              .slice(0, 2)
-              .map((employee) => <TeamMember employee={employee} />)
+            employees.slice(0, 2).map((employee) => (
+              <div class="about-team-member">
+                <TeamMember employee={employee} showTitle={true} />
+              </div>
+            ))
           }
         </div>
       </div>
@@ -396,10 +398,31 @@ const valueCards = [
       font-size: 0.7rem;
     }
 
-    .team-members {
+    /* De to medarbejdere på ABOUT-siden */
+    .about-team .team-members {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+    }
+
+    .about-team .team-members :global(.team-member) {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 1rem;
+      align-items: center;
+      text-align: left;
+    }
+
+    .about-team .team-members :global(.team-member-image img) {
+      width: 10rem;
+      height: 10rem;
+      object-fit: cover;
+      border-radius: 0.75rem;
+    }
+
+    /* Skjul sociale medier KUN på About-siden */
+    .about-team .team-members :global(.social-links) {
+      display: none;
     }
     .about-faq {
       padding: 5rem 2rem;

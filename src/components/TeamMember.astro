@@ -1,5 +1,10 @@
 ---
-const { employee } = Astro.props;
+const { employee, showTitle = false } = Astro.props;
+
+const imageSrc = employee.image?.src ?? employee.img;
+const imageAlt = employee.image?.alt ?? employee.name;
+const imageWidth = employee.image?.width;
+const imageHeight = employee.image?.height;
 
 import Instagram from "../icons/instagram.svg";
 import Facebook from "../icons/facebook.svg";
@@ -8,17 +13,17 @@ import Facebook from "../icons/facebook.svg";
 <article class="team-member">
   <div class="team-member-image">
     <img
-      src={employee.image.src}
-      alt={employee.image.alt}
-      width={employee.image.width}
-      height={employee.image.height}
+      src={imageSrc}
+      alt={imageAlt}
+      width={imageWidth}
+      height={imageHeight}
     />
-
-    <p class="team-member-title">{employee.title}</p>
   </div>
 
   <div class="team-member-content">
     <h3>{employee.name}</h3>
+
+    {showTitle && <p class="about-member-title">{employee.title}</p>}
 
     <p class="team-member-description">
       {employee.description}
@@ -99,6 +104,12 @@ import Facebook from "../icons/facebook.svg";
     .social-links :global(svg) {
       width: 1.2rem;
       height: 1.2rem;
+    }
+
+    .about-member-title {
+      margin: 0 0 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 525;
     }
   }
 </style>
