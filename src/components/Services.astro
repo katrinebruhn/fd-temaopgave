@@ -16,8 +16,15 @@ const serviceData = await fetch("https://ftk-api.pages.dev/services").then(
     .services {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      grid-column: 1 / -1;
+      gap: 0.5rem;
+
+      max-width: 48rem;
+      width: calc(100% - 4rem);
+      margin-inline: auto;
+      margin-top: 0;
+      transform: translateY(-4.5rem);
+      position: relative;
+      z-index: 2;
     }
   }
 </style>

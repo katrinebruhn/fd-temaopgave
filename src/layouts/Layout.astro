@@ -19,9 +19,15 @@ import Footer from "@components/Footer.astro";
       @layer reset, global, tokens, components, overrides;
     </style>
   </head>
-  <body>
+  <body class="body">
     <Header />
     <slot />
+    
     <Footer />
   </body>
 </html>
+
+<style>
+  .body
+  background-var(--color-neutrals-50) 
+</style>

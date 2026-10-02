@@ -1,0 +1,158 @@
+---
+import { Image } from "astro:assets";
+import ContactSectionImage from "@assets/images/contact-section.png";
+import PhoneIcon from "@icons/phone.svg";
+import ClockIcon from "@icons/clock.svg";
+import PinIcon from "@icons/pin.svg";
+---
+
+<section class="contact-section">
+  <div class="contact-content">
+    <p class="eyebrow">PROCESS</p>
+    <h2>Contact Us. It’s Easy.</h2>
+    <p class="intro">
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews. Iterative approaches to corporate strategy foster
+      collaborative.
+    </p>
+
+    <div class="contact-list">
+      <div class="contact-item">
+        <div class="contact-icon phone-icon">
+          <PhoneIcon />
+        </div>
+        <div>
+          <p>Call Today</p>
+          <strong>+1 800 100 900</strong>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon clock-icon">
+          <ClockIcon />
+        </div>
+        <div>
+          <p>Monday To Friday</p>
+          <strong>9AM - 5PM</strong>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon pin-icon">
+          <PinIcon />
+        </div>
+        <div>
+          <p>USA Office</p>
+          <strong>195 Devonshire St Boston, MA 02110</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-images">
+    <Image src={ContactSectionImage} alt="Business team and meetings" />
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 4rem;
+      align-items: center;
+
+      max-width: 60rem;
+      width: calc(100% - 12rem);
+      margin-inline: auto;
+      padding-block: 5rem;
+    }
+
+    .contact-content {
+      max-width: 23rem;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-content h2 {
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .intro {
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .contact-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+
+      color: var(--color-text);
+    }
+
+    .contact-item strong {
+      font-size: 1rem;
+    }
+
+    .contact-item p {
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+      color: var(--color-text-muted);
+    }
+
+    .contact-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .phone-icon {
+      background: #ffecbb;
+      color: #deaa27;
+    }
+
+    .clock-icon {
+      background: #a4eda4;
+      color: #4eaf4e;
+    }
+
+    .pin-icon {
+      background: var(--color-surface-tertiary);
+      color: var(--color-text);
+    }
+
+    .contact-images {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-images img {
+      display: block;
+      width: 100%;
+      max-width: 31rem;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+</style>

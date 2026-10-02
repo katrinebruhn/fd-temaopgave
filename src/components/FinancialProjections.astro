@@ -1,0 +1,148 @@
+---
+import CalIcon from "@icons/cal.svg";
+import CardIcon from "@icons/card.svg";
+import LawIcon from "@icons/law.svg";
+import MoneyIcon from "@icons/money.svg";
+---
+
+<section class="financial-projections">
+  <div class="financial-header">
+    <div>
+      <p class="eyebrow">FINANCIAL TOOLS</p>
+      <h2>Financial Projections</h2>
+      <p>
+        Financial projections are essential for planning and monitoring a
+        company's performance. They provide insights into potential revenue,
+        expenses, and profitability over specific periods.
+      </p>
+    </div>
+
+    <div class="financial-controls">
+      <button type="button">←</button>
+      <button type="button">→</button>
+    </div>
+  </div>
+
+  <div class="financial-cards">
+    <div class="financial-card">
+      <CalIcon />
+      <h3>The Balance Sheet</h3>
+      <p>
+        The Balance Sheet is a summary of the assets and liabilities and equity
+        of a business at a specific point in time.
+      </p>
+    </div>
+
+    <div class="financial-card">
+      <CardIcon />
+      <h3>Income Statement</h3>
+      <p>
+        The Income Statement summarizes the revenue and expenses for a specific
+        time period.
+      </p>
+    </div>
+
+    <div class="financial-card">
+      <LawIcon />
+      <h3>Financial Plan</h3>
+      <p>
+        Keep your information current and review the documents on a regular
+        basis.
+      </p>
+    </div>
+
+    <div class="financial-card">
+      <MoneyIcon />
+      <h3>Financial Ratios</h3>
+      <p>
+        Ratios are useful when comparing your company with the competition and
+        benchmarking performance.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .financial-projections {
+      max-width: 74rem;
+      width: calc(100% - 4rem);
+      margin-inline: auto;
+      padding-block: 6rem;
+    }
+
+    .financial-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .financial-header > div:first-child {
+      max-width: 34rem;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .financial-header h2 {
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .financial-header p {
+      line-height: 1.5;
+    }
+
+    .financial-controls {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .financial-controls button {
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 0;
+      border-radius: 50%;
+      background: var(--color-surface-elevated);
+      color: var(--color-on-surface-elevated);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .financial-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .financial-card {
+      background: #eef1f4;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      min-height: 8.5rem;
+    }
+
+    .financial-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .financial-card p {
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .financial-card svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
