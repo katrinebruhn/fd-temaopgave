@@ -1,6 +1,7 @@
 # Refleksion – Figma til kode
 
-**Gruppemedlemmer:** Skriv begge navne her.
+**Gruppemedlemmer:**
+Katrine Bruhn og Vanest Jalal
 
 ## Sådan bruger I filen
 

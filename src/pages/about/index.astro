@@ -1,5 +1,48 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import aboutImage from "@assets/images/about-us.jpg";
+import Checkmark from "@icons/checkmark.svg";
+import ServiceCard from "@components/ServiceCard.astro";
+import TeamMember from "@components/TeamMember.astro";
+import employees from "@data/employees.json";
+import FaqItem from "@components/FaqItem.astro";
+import faqData from "@data/faq.json";
+
+import Layers from "@icons/layers.svg";
+import Bars from "@icons/bars.svg";
+import Globe from "@icons/globe.svg";
+import Gear from "@icons/gear.svg";
+
+const valueCards = [
+  {
+    title: "Creative Ideas",
+    description:
+      "Explore innovative strategies tailored to your goals. Unlock unique solutions that inspire growth and creativity. Drive impactful change.",
+    buttonText: "Read More",
+    icon: Layers.src,
+  },
+  {
+    title: "Best Features",
+    description:
+      "Deliver advanced tools designed for seamless integration. Optimize workflows with cutting-edge technology.",
+    buttonText: "Read More",
+    icon: Bars.src,
+  },
+  {
+    title: "Experience",
+    description:
+      "Leverage years of proven expertise across diverse industries. Empower your business with our skilled professionals. Achieve sustainable success.",
+    buttonText: "Read More",
+    icon: Globe.src,
+  },
+  {
+    title: "Easy Solutions",
+    description:
+      "Streamline your challenges with simple, effective solutions. Ensure hassle-free implementation for measurable results.",
+    buttonText: "Read More",
+    icon: Gear.src,
+  },
+];
 ---
 
 <Layout>
@@ -15,6 +58,126 @@ import Layout from "@layouts/Layout.astro";
         promotes peak performance, and guarantees client satisfaction.
       </p>
     </section>
+
+    <section class="about-vision">
+      <div class="vision-content">
+        <div class="vision-text">
+          <p class="vision-label">OUR VISION</p>
+
+          <h2>Turn your ideas into reality.</h2>
+
+          <p>
+            Capitalize on low hanging fruit to identify a ballpark value added
+            activity beta test. Override the digital divide with additional from
+            DevOps.
+          </p>
+
+          <div class="vision-points">
+            <div class="vision-point">
+              <Checkmark />
+              <p>
+                Bring to the table win-win survival strategies to ensure
+                proactive domination. At the end of the day.
+              </p>
+            </div>
+
+            <div class="vision-point">
+              <Checkmark />
+              <p>
+                Capitalize on low hanging fruit to identify a ballpark value
+                added activity to beta test override the digital.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vision-image">
+          <img src={aboutImage.src} alt="Team working together" />
+        </div>
+      </div>
+
+      <div class="vision-stats">
+        <div>
+          <strong>1128+</strong>
+          <p>Successful Work</p>
+        </div>
+
+        <div>
+          <strong>908+</strong>
+          <p>Team member</p>
+        </div>
+
+        <div>
+          <strong>258+</strong>
+          <p>Happy Customers</p>
+        </div>
+
+        <div>
+          <strong>564+</strong>
+          <p>Creative Idea</p>
+        </div>
+      </div>
+    </section>
+    <section class="about-values">
+      <div class="values-container">
+        <div class="values-header">
+          <div>
+            <p class="values-label">GROWING WITH OUR CLIENTS</p>
+
+            <h2>Our core values & principles</h2>
+
+            <p class="values-description">
+              Capitalize on low hanging fruit to identify a ballpark value added
+              activity beta test. Override the digital divide with additional
+              from DevOps.
+            </p>
+          </div>
+
+          <a href="#" class="values-button">Get in touch</a>
+        </div>
+
+        <div class="values-grid">
+          {valueCards.map((service) => <ServiceCard service={service} />)}
+        </div>
+      </div>
+    </section>
+    <section class="about-team">
+      <div class="team-container">
+        <div class="team-intro">
+          <p class="team-label">OUR TEAM</p>
+
+          <h2>We champion<br />the bold</h2>
+
+          <p class="team-description">
+            Our success stems from the synergy between dedicated teams and our
+            valued clients. We prioritize a company culture that fosters
+            exceptional productivity, ensures customer satisfaction.
+          </p>
+
+          <a href="/team" class="team-button">Meet the Team</a>
+        </div>
+
+        <div class="team-members">
+          {
+            employees
+              .slice(0, 2)
+              .map((employee) => <TeamMember employee={employee} />)
+          }
+        </div>
+      </div>
+    </section>
+    <section class="about-faq">
+      <div class="faq-container">
+        <div class="faq-header">
+          <p class="faq-label">FAQ</p>
+          <h2>Customer Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          {faqData.faq.map((item) => <FaqItem item={item} />)}
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>
 
@@ -23,31 +186,7 @@ import Layout from "@layouts/Layout.astro";
     .about-intro {
       text-align: center;
       padding-block: 4rem 6rem;
-    }
-
-    .about-intro h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      position: relative;
-      display: inline-block;
-      z-index: 1;
-
-      text-shadow:
-        2px 0 white,
-        -2px 0 white,
-        0 2px white,
-        0 -2px white;
-    }
-
-    .about-intro h1::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100vw;
-      height: 4px;
-      background-color: var(--color-action);
-      z-index: -1;
+      background-color: var(--color-surface-secondary);
     }
 
     .about-label {
@@ -56,10 +195,239 @@ import Layout from "@layouts/Layout.astro";
       margin-bottom: 1rem;
     }
 
+    .about-intro h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
     .about-description {
       max-width: 32rem;
       margin: 2rem auto 0;
       line-height: 1.5;
+    }
+
+    .about-vision {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .vision-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .vision-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.75rem;
+    }
+
+    .vision-text h2 {
+      font-size: 1.8rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .vision-text > p:not(.vision-label) {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+
+    .vision-points {
+      margin-top: 1rem;
+    }
+
+    .vision-point {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-top: 0.75rem;
+    }
+
+    .vision-point svg {
+      width: 1rem;
+      height: 1rem;
+      color: #9be89b;
+      flex-shrink: 0;
+    }
+
+    .vision-point p {
+      margin: 0;
+      font-size: 0.7rem;
+      line-height: 1.4;
+    }
+
+    .vision-image {
+      position: relative;
+    }
+
+    .vision-image::before {
+      content: "";
+      position: absolute;
+      width: 4rem;
+      height: 4rem;
+      background-color: #9be89b;
+      border-radius: 0.75rem;
+      top: -0.5rem;
+      right: -1rem;
+      z-index: 0;
+    }
+
+    .vision-image img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: block;
+      border-radius: 0.75rem;
+    }
+
+    .vision-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .vision-stats strong {
+      font-size: 2rem;
+    }
+
+    .vision-stats p {
+      font-size: 0.65rem;
+      margin-top: 0.4rem;
+    }
+
+    .about-values {
+      background-color: var(--color-surface-secondary);
+      padding: 4rem 2rem;
+    }
+
+    .values-container {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    .values-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .values-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      margin: 0 0 0.75rem;
+    }
+
+    .values-header h2 {
+      font-size: 1.8rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .values-description {
+      max-width: 28rem;
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+
+    .values-button {
+      background-color: #07101f;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .about-team {
+      background-color: white;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .team-container {
+      max-width: 56rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .team-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      margin: 0 0 0.75rem;
+    }
+
+    .team-intro h2 {
+      font-size: 1.8rem;
+      line-height: 1.1;
+      margin: 0 0 0.75rem;
+    }
+
+    .team-description {
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+      margin: 0 0 1rem;
+    }
+
+    .team-button {
+      display: inline-block;
+      background-color: #07101f;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+    }
+
+    .team-members {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .about-faq {
+      padding: 5rem 2rem;
+      background-color: white;
+    }
+
+    .faq-container {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 4rem 5rem;
+      background-color: #f7f8fa;
+      border-radius: 1rem;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-label {
+      margin: 0 0 0.75rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+    }
+
+    .faq-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
     }
   }
 </style>
