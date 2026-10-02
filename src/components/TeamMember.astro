@@ -1,0 +1,115 @@
+---
+const { employee, showTitle = false } = Astro.props;
+
+const imageSrc = employee.image?.src ?? employee.img;
+const imageAlt = employee.image?.alt ?? employee.name;
+const imageWidth = employee.image?.width;
+const imageHeight = employee.image?.height;
+
+import Instagram from "../icons/instagram.svg";
+import Facebook from "../icons/facebook.svg";
+---
+
+<article class="team-member">
+  <div class="team-member-image">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      width={imageWidth}
+      height={imageHeight}
+    />
+  </div>
+
+  <div class="team-member-content">
+    <h3>{employee.name}</h3>
+
+    {showTitle && <p class="about-member-title">{employee.title}</p>}
+
+    <p class="team-member-description">
+      {employee.description}
+    </p>
+
+    <div class="social-links">
+      {
+        employee.social_links.map((social: any) => (
+          <a href={social.url} aria-label={social.platform}>
+            {social.icon === "instagram" && <Instagram />}
+            {social.icon === "facebook" && <Facebook />}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  @layer components {
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .team-member :global(img) {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .team-member-content h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .team-member-title {
+      position: absolute;
+      right: 0.5rem;
+      bottom: 1rem;
+      margin: 0;
+      padding: 0.3rem 0.6rem;
+      background-color: var(--color-ui-primary);
+      color: var(--color-on-ui-primary);
+      border-radius: 1rem;
+      font-size: 0.6rem;
+      font-weight: 400;
+    }
+
+    .team-member-description {
+      margin: 0;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+    .team-member-image {
+      position: relative;
+      width: 100%;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--color-text);
+      display: flex;
+    }
+
+    .social-links :global(svg) {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .about-member-title {
+      margin: 0 0 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 525;
+    }
+  }
+</style>

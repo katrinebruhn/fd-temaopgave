@@ -4,6 +4,9 @@ import ArrowRight from "@icons/arrow--right.svg";
 ---
 
 <article>
+  <div class="value-icon">
+    <img src={service.icon} alt="" />
+  </div>
   <h2>{service.title}</h2>
   <p>{service.description}</p>
   <a href="#0">{service.buttonText} <ArrowRight stroke-width={2.5} /></a>
@@ -13,19 +16,53 @@ import ArrowRight from "@icons/arrow--right.svg";
 <style>
   @layer components {
     article {
-      background: var(--color-blue-700-transparent);
-      color: var(--color-on-surface-elevated);
-      padding: 2rem; /* Dette burde være en token */
-      border-radius: 20px; /* Dette burde være en token */
+      background: white;
+      color: var(--color-on-surface);
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid #e8e8e8;
     }
+
+    .value-icon {
+      width: 2rem;
+      height: 2rem;
+      background: #07101f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .value-icon img {
+      width: 1rem;
+      height: 1rem;
+      filter: brightness(0) invert(1);
+    }
+
+    h2 {
+      font-size: 0.85rem;
+      margin: 0 0 0.6rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+      margin: 0 0 1rem;
+    }
+
     a {
-      display: inline flex;
-      gap: 1ch;
-      color: var(--color-action);
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-on-surface);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-decoration: none;
 
       svg {
-        inline-size: 16px;
+        inline-size: 12px;
       }
     }
   }

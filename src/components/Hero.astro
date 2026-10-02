@@ -24,8 +24,22 @@ import CEOImage from "@assets/images/ceo.webp";
   /* Styles her */
   @layer components {
     .hero {
-      background-color: #f3f4f6;
-      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+
+      background: var(--color-surface-elevated);
+      color: var(--color-on-surface-elevated);
+    }
+    .hero-content {
+      padding: 3rem;
+      max-width: 36rem;
+    }
+    /*sikre at billedet fylder sin halvdel mere kontrolleret*/
+    .hero > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 </style>
