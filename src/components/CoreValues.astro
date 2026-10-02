@@ -1,0 +1,197 @@
+---
+import LayersIcon from "@icons/layers.svg";
+import BarsIcon from "@icons/bars.svg";
+import GlobeIcon from "@icons/globe.svg";
+import GearIcon from "@icons/gear.svg";
+---
+
+<section class="core-values">
+  <div class="core-values-header">
+    <div>
+      <p class="eyebrow">GROWING WITH OUR CLIENTS</p>
+      <h2>Our core values & principles</h2>
+      <p>
+        Capitalize on low hanging fruit to identify a ballpark value added
+        activity beta test. Override the digital divide with additional from
+        DevOps.
+      </p>
+    </div>
+
+    <a href="#0" class="contact-button">Get in touch</a>
+  </div>
+  <div class="value-cards">
+    <article class="value-card">
+      <div class="value-icon">
+        <LayersIcon />
+      </div>
+
+      <h3>Creative Ideas</h3>
+
+      <p>
+        Explore innovative strategies tailored to your goals. Unlock unique
+        solutions that inspire growth and creativity. Drive impactful change.
+      </p>
+
+      <a href="#0">Read More →</a>
+    </article>
+
+    <article class="value-card">
+      <div class="value-icon">
+        <BarsIcon />
+      </div>
+
+      <h3>Best Features</h3>
+
+      <p>
+        Deliver advanced tools designed for seamless integration. Optimize
+        workflows with cutting-edge technology.
+      </p>
+
+      <a href="#0">Read More →</a>
+    </article>
+
+    <article class="value-card">
+      <div class="value-icon">
+        <GlobeIcon />
+      </div>
+
+      <h3>Experience</h3>
+
+      <p>
+        Leverage years of proven expertise across diverse industries. Empower
+        your business with our skilled professionals.
+      </p>
+
+      <a href="#0">Read More →</a>
+    </article>
+
+    <article class="value-card">
+      <div class="value-icon">
+        <GearIcon />
+      </div>
+
+      <h3>Easy Solutions</h3>
+
+      <p>
+        Streamline your challenges with simple, effective solutions. Ensure
+        hassle-free implementation for measurable results.
+      </p>
+
+      <a href="#0">Read More →</a>
+    </article>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .core-values {
+      background-color: var(--color-surface-elevated);
+      background-image:
+        linear-gradient(rgba(255, 196, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 196, 0, 0.08) 1px, transparent 1px);
+      background-size: 3rem 3rem;
+
+      color: var(--color-on-surface-elevated);
+      padding: 5rem 6rem;
+    }
+
+    .core-values-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+
+      max-width: 74rem;
+      margin-inline: auto;
+    }
+
+    .core-values-header > div {
+      max-width: 36rem;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .core-values h2 {
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .core-values-header p {
+      line-height: 1.5;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+
+      background: var(--color-on-surface-elevated);
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .value-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+
+      max-width: 74rem;
+      margin: 2.5rem auto 0;
+    }
+
+    .value-card {
+      background: var(--color-on-surface-elevated);
+      color: var(--color-text);
+
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      min-height: 17rem;
+
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 0.75rem;
+    }
+
+    .value-card h3 {
+      font-size: 1rem;
+    }
+
+    .value-card p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .value-card a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .value-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--color-surface-elevated);
+      color: var(--color-on-surface-elevated);
+    }
+
+    .value-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+</style>
