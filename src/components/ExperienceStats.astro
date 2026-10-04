@@ -12,6 +12,8 @@
         <circle class="progress" pathLength="100"></circle>
         <circle class="marker" r="4"></circle>
       </svg>
+
+      <span class="stat-value">0%</span>
       <figcaption>Consistency</figcaption>
     </figure>
 
@@ -21,6 +23,8 @@
         <circle class="progress" pathLength="100"></circle>
         <circle class="marker" r="4"></circle>
       </svg>
+
+      <span class="stat-value">0%</span>
       <figcaption>Improvement</figcaption>
     </figure>
 
@@ -30,6 +34,8 @@
         <circle class="progress" pathLength="100"></circle>
         <circle class="marker" r="4"></circle>
       </svg>
+
+      <span class="stat-value">0%</span>
       <figcaption>Branching</figcaption>
     </figure>
   </div>
@@ -68,9 +74,7 @@
       min-width: 0;
       text-align: center;
 
-      --value-string: attr(data-value);
-      --value-number: attr(data-value type(<number>), 0);
-      --value-percent: calc(var(--value-number) * 1%);
+      --current-value: 0;
 
       display: grid;
       grid-template-areas:
@@ -80,11 +84,10 @@
       container: stat / inline-size;
     }
 
-    figure::after {
-      content: var(--value-string) "%";
+    .stat-value {
       grid-area: stack;
       place-self: center;
-      font-size: 30cqw;
+      font-size: 2rem;
       font-weight: 700;
     }
 
@@ -109,8 +112,8 @@
     .progress {
       stroke: white;
       stroke-linecap: round;
-      stroke-dasharray: 100.1;
-      stroke-dashoffset: calc(100 - var(--value-number));
+      stroke-dasharray: 100;
+      stroke-dashoffset: calc(100 - var(--current-value));
     }
 
     .marker {
@@ -118,8 +121,9 @@
       fill: var(--color-surface-elevated);
       stroke: white;
       stroke-width: 2;
+
       offset-path: circle(46px at 50px 50px);
-      offset-distance: var(--value-percent);
+      offset-distance: calc(var(--current-value) * 1%);
     }
 
     figcaption {
@@ -129,3 +133,52 @@
     }
   }
 </style>
+
+<script>
+  const section = document.querySelector(".experience-section");
+
+  if (section) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+
+        if (!entry.isIntersecting) return;
+
+        const figures = section.querySelectorAll("figure");
+
+        figures.forEach((figure) => {
+          const target = Number(figure.getAttribute("data-value"));
+          const value = figure.querySelector(".stat-value");
+
+          let current = 0;
+          const duration = 1200;
+          const start = performance.now();
+
+          function animate(time: number) {
+            const progress = Math.min((time - start) / duration, 1);
+            current = Math.round(target * progress);
+
+            figure.style.setProperty("--current-value", String(current));
+
+            if (value) {
+              value.textContent = `${current}%`;
+            }
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+
+          requestAnimationFrame(animate);
+        });
+
+        observer.disconnect();
+      },
+      {
+        threshold: 0.25,
+      },
+    );
+
+    observer.observe(section);
+  }
+</script>

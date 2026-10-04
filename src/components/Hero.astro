@@ -12,7 +12,15 @@ import CEOImage from "@assets/images/ceo.webp";
 
 <section class="hero">
   <div class="hero-content">
-    <h1>Empowering Your Business Growth</h1>
+    <h1>
+      <span class="hero-first-line">
+        <span class="line-em">Em</span><span class="no-line">p</span><span
+          class="line-owerin">owerin</span
+        ><span class="no-line">g</span><span class="word-your">&nbsp;Your</span>
+      </span>
+
+      <span class="hero-second-line">Business Growth</span>
+    </h1>
 
     <p>
       Discover tailored strategies and expert insights to take your business to
@@ -49,10 +57,8 @@ import CEOImage from "@assets/images/ceo.webp";
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: stretch;
-
       height: 30rem;
-
-      background: var(--color-surface-elevated);
+      background: var(--color-neutrals-900);
       color: var(--color-on-surface-elevated);
     }
 
@@ -67,7 +73,82 @@ import CEOImage from "@assets/images/ceo.webp";
       font-size: 2.5rem;
       font-weight: 700;
       line-height: 1.05;
-      max-width: 10ch;
+      margin: 0;
+    }
+
+    .hero-first-line,
+    .hero-second-line {
+      display: block;
+      width: max-content;
+    }
+
+    .hero-first-line {
+      white-space: nowrap;
+    }
+
+    .hero-first-line,
+    .hero-second-line {
+      display: block;
+      width: max-content;
+    }
+
+    .hero-first-line {
+      white-space: nowrap;
+    }
+
+    .line-em,
+    .line-owerin {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Streg under "Em" */
+    .line-em::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+
+      height: 0.18rem; /* tykkere */
+      background: var(--color-action);
+    }
+
+    /* Fade-linje til venstre */
+    .line-em::before {
+      content: "";
+      position: absolute;
+      right: 100%;
+      bottom: 0.08em;
+
+      width: 18rem;
+      height: 0.2rem;
+
+      background: linear-gradient(
+        to right,
+        rgba(255, 204, 74, 0.05) 0%,
+        rgba(255, 204, 74, 0.15) 35%,
+        rgba(255, 204, 74, 0.45) 70%,
+        rgba(255, 204, 74, 1) 100%
+      );
+    }
+
+    /* Streg efter p'et og frem til før g'et */
+    .line-owerin::after {
+      content: "";
+      position: absolute;
+
+      left: -0.12em; /* rykker stregen tættere på p */
+      right: 0;
+      bottom: 0.08em;
+
+      height: 0.2rem; /* tykkere */
+      background: var(--color-action);
+    }
+
+    .no-line,
+    .word-your {
+      display: inline-block;
     }
 
     .hero-content p {
@@ -114,21 +195,15 @@ import CEOImage from "@assets/images/ceo.webp";
     }
 
     .ombre-gradient {
-      position: absolute;
-      inset: 0;
-
       background: linear-gradient(
         to right,
-        var(--color-surface-elevated) 0%,
+        var(--color-neutrals-900) 0%,
         transparent 35%
       );
-
-      pointer-events: none;
     }
 
     .services-section {
       background: var(--color-surface-primary);
-      padding-bottom: 10rem;
     }
   }
 </style>

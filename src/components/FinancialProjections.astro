@@ -18,8 +18,8 @@ import MoneyIcon from "@icons/money.svg";
     </div>
 
     <div class="financial-controls">
-      <button type="button">←</button>
-      <button type="button">→</button>
+      <button type="button" class="prev-button">←</button>
+      <button type="button" class="next-button">→</button>
     </div>
   </div>
 
@@ -65,16 +65,16 @@ import MoneyIcon from "@icons/money.svg";
 <style>
   @layer components {
     .financial-projections {
-      max-width: 74rem;
-      width: calc(100% - 4rem);
+      max-width: 70rem;
+      width: calc(100% - 6rem);
       margin-inline: auto;
       padding-block: 6rem;
     }
 
     .financial-header {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
+      grid-template-columns: 34rem auto;
+      gap: 10rem;
       align-items: end;
     }
 
@@ -102,6 +102,8 @@ import MoneyIcon from "@icons/money.svg";
     .financial-controls {
       display: flex;
       gap: 0.75rem;
+      align-self: center;
+      margin-bottom: 1.5rem;
     }
 
     .financial-controls button {
@@ -116,10 +118,21 @@ import MoneyIcon from "@icons/money.svg";
     }
 
     .financial-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
       gap: 1rem;
-      margin-top: 2rem;
+      margin-top: 3rem;
+
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .financial-cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    .financial-card {
+      flex: 0 0 16rem;
     }
 
     .financial-card {
@@ -146,3 +159,27 @@ import MoneyIcon from "@icons/money.svg";
     }
   }
 </style>
+
+<script>
+  const cards = document.querySelector(".financial-cards");
+  const prevButton = document.querySelector(".prev-button");
+  const nextButton = document.querySelector(".next-button");
+
+  if (cards && prevButton && nextButton) {
+    const scrollAmount = 300;
+
+    prevButton.addEventListener("click", () => {
+      cards.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    });
+
+    nextButton.addEventListener("click", () => {
+      cards.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    });
+  }
+</script>
