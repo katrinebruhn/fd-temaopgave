@@ -1,26 +1,83 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<!-- ===== Header ===== -->
 <header class="site-header">
   <a href="/" class="logo">
     Ask<span>Experts</span>
   </a>
 
-  <nav aria-label="Primary navigation">
-    <a href="/">Home</a>
-    <a href="/case-studies/taxes-and-efficiency">Case Studies</a>
-    <a href="/team">Team</a>
-    <a href="/about">About</a>
+  <!-- Burgermenu -->
+  <button
+    type="button"
+    class="burger-button"
+    aria-label="Åbn menu"
+    aria-expanded="false"
+    aria-controls="primary-nav"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Navigation -->
+  <nav id="primary-nav" aria-label="Primary navigation">
+    <a href="/" class:list={{ active: currentPath === "/" }}>Home</a>
+
+    <a
+      href="/case-studies/taxes-and-efficiency"
+      class:list={{ active: currentPath.startsWith("/case-studies") }}
+    >
+      Case Studies
+    </a>
+
+    <a href="/team" class:list={{ active: currentPath.startsWith("/team") }}>
+      Team
+    </a>
+
+    <a href="/about" class:list={{ active: currentPath.startsWith("/about") }}>
+      About
+    </a>
+
+    <button
+      type="button"
+      class="mobile-login-button"
+      popovertarget="login-popover"
+    >
+      Login
+    </button>
   </nav>
 
-  <button type="button" class="login-button"> Login </button>
+  <!-- Login -->
+  <button type="button" class="login-button" popovertarget="login-popover">
+    Login
+  </button>
 </header>
 
+<!-- ===== Login popover ===== -->
+<div id="login-popover" popover class="login-popover">
+  <h2>Dashboard Login</h2>
+
+  <form>
+    <label for="login-email">Email address</label>
+    <input type="email" id="login-email" name="email" required />
+
+    <label for="login-password">Password</label>
+    <input type="password" id="login-password" name="password" required />
+
+    <button type="submit" class="dashboard-button">Go to dashboard</button>
+  </form>
+</div>
+
 <style>
+  /* ===== Header ===== */
   .site-header {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 1.5rem;
     padding: 0.75rem 2rem;
-
     background: var(--color-surface-elevated);
     color: var(--color-on-surface-elevated);
   }
@@ -36,6 +93,7 @@
     color: var(--color-action);
   }
 
+  /* ===== Navigation ===== */
   nav {
     display: flex;
     justify-content: center;
@@ -48,6 +106,12 @@
     font-size: 0.9rem;
   }
 
+  nav a.active {
+    border-bottom: 2px solid var(--color-action);
+    padding-bottom: 0.25rem;
+  }
+
+  /* ===== Login popover ===== */
   .login-button {
     background: var(--color-on-surface-elevated);
     color: var(--color-text);
@@ -55,5 +119,191 @@
     border-radius: 999px;
     padding: 0.4rem 0.9rem;
     font-size: 0.85rem;
+    anchor-name: --login-button;
+  }
+
+  .login-popover {
+    position: fixed;
+    position-anchor: --login-button;
+    top: anchor(bottom);
+    right: anchor(right);
+    left: auto;
+    width: 15rem;
+    margin: 0.8rem 0 0;
+    padding: 1rem;
+    border: 0;
+    border-radius: 1rem;
+    background-color: var(--color-surface-primary);
+    color: var(--color-text);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+  }
+
+  .login-popover h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .login-popover label {
+    margin-bottom: 0.3rem;
+    font-size: 0.55rem;
+  }
+
+  .login-popover input {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.9rem;
+    border: 1px solid var(--color-text-weak);
+    border-radius: 999px;
+    background-color: var(--color-surface-primary);
+  }
+
+  .dashboard-button {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--color-action);
+    color: var(--color-text);
+    font-size: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* ===== Login animation ===== */
+  .login-popover:popover-open h2,
+  .login-popover:popover-open label,
+  .login-popover:popover-open input,
+  .login-popover:popover-open .dashboard-button {
+    animation: login-item-in 0.4s ease both;
+  }
+
+  .login-popover:popover-open h2 {
+    animation-delay: 0.05s;
+  }
+
+  .login-popover:popover-open label:nth-of-type(1) {
+    animation-delay: 0.1s;
+  }
+
+  .login-popover:popover-open input:nth-of-type(1) {
+    animation-delay: 0.15s;
+  }
+
+  .login-popover:popover-open label:nth-of-type(2) {
+    animation-delay: 0.2s;
+  }
+
+  .login-popover:popover-open input:nth-of-type(2) {
+    animation-delay: 0.25s;
+  }
+
+  .login-popover:popover-open .dashboard-button {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes login-item-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ===== Burgermenu ===== */
+  .burger-button {
+    display: none;
+  }
+
+  .mobile-login-button {
+    display: none;
+  }
+
+  /* ===== Mobil ===== */
+  @media (max-width: 700px) {
+    .site-header {
+      grid-template-columns: 1fr auto;
+      position: relative;
+    }
+
+    .burger-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .burger-button span {
+      display: block;
+      width: 1.5rem;
+      height: 2px;
+      background-color: var(--color-on-surface-elevated);
+    }
+
+    nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background-color: var(--color-surface-elevated);
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      z-index: 10;
+    }
+
+    nav.is-open {
+      display: flex;
+    }
+
+    .login-button {
+      display: none;
+    }
+
+    .mobile-login-button {
+      display: block;
+      background: var(--color-on-surface-elevated);
+      color: var(--color-text);
+      border: 0;
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .login-popover {
+      position: fixed;
+      position-anchor: auto;
+      top: 50%;
+      left: 70%;
+      right: auto;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      width: min(20rem, calc(100% - 2rem));
+      z-index: 20;
+    }
   }
 </style>
+
+<!-- ===== Burgermenu funktionalitet ===== -->
+<script>
+  const burgerButton = document.querySelector(".burger-button");
+  const navigation = document.querySelector("#primary-nav");
+
+  burgerButton?.addEventListener("click", () => {
+    navigation?.classList.toggle("is-open");
+
+    const isOpen = navigation?.classList.contains("is-open") ?? false;
+    burgerButton.setAttribute("aria-expanded", String(isOpen));
+  });
+</script>

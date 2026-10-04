@@ -31,10 +31,12 @@
   --color-text-weak: var(--color-neutrals-400);
   --color-surface-highlight: var(--color-yellow-600);
   --color-on-ui-primary-muted: var(--color-neutrals-400);
+
+  /* ==== Typography ==== */
+  --font-size-body: 1rem;
+  --line-height-body: 1.5;
 }
 
 /* ==== Spacing ==== */
-
-/* ==== Typography ==== */
 
 /* ==== Border Radii ==== */

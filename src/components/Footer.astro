@@ -1,3 +1,28 @@
+<!-- Newsletter -->
+<section class="newsletter">
+  <div class="newsletter-content">
+    <p class="newsletter-label">STAY UPDATED</p>
+
+    <h2>Subscribe Our Newsletter</h2>
+
+    <p class="newsletter-description">
+      Build stronger Customer Relationships with
+      <span>Consultalk</span>
+    </p>
+
+    <form class="newsletter-form">
+      <input
+        type="email"
+        placeholder="your mail address"
+        aria-label="Email address"
+        required
+      />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer class="site-footer">
   <div class="footer-left">
     <a href="/" class="footer-logo">
@@ -16,16 +41,76 @@
 </footer>
 
 <style>
+  /* Newsletter */
+  .newsletter {
+    background-color: var(--color-surface-elevated);
+    color: var(--color-on-surface-elevated);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .newsletter-content {
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  .newsletter-label {
+    margin: 0 0 0.5rem;
+    color: var(--color-action);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .newsletter h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .newsletter-description {
+    margin: 0.5rem 0 1.5rem;
+    font-size: 0.65rem;
+    color: var(--color-on-ui-primary-muted);
+  }
+
+  .newsletter-description span {
+    color: var(--color-action);
+  }
+
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .newsletter-form input {
+    width: 15rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--color-text-weak);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-on-surface-elevated);
+    font-size: 0.7rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.65rem 1.5rem;
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--color-action);
+    color: var(--color-text);
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
   .site-footer {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 1rem;
-
     padding: 1rem 2rem;
-
     background: var(--color-surface-elevated);
     color: var(--color-on-surface-elevated);
+    border-top: 1px solid var(--color-text-weak);
   }
 
   .footer-logo {
