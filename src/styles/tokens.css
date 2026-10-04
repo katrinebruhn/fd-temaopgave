@@ -21,7 +21,7 @@
   --color-surface-primary: #ffffff;
   --color-surface-secondary: var(--color-neutrals-50);
   --color-surface-tertiary: var(--color-neutrals-200);
-  --color-surface-elevated: var(--color-blue-700);
+  --color-surface-elevated: var(--color-neutrals-900);
   --color-surface-elevated-transparent: var(--color-blue-700-transparent);
   --color-ui-secondary: var(--color-green-400);
   --color-ui-secondary-alternative: var(--color-green-600);

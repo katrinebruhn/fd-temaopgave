@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import ExpectImage from "@assets/images/what-to-expect.png";
+import Checkmark from "@icons/checkmark.svg";
+---
+
+<section class="what-to-expect">
+  <div class="expect-visual">
+    <div class="green-shape"></div>
+    <Image src={ExpectImage} alt="Business meeting" />
+  </div>
+
+  <div class="expect-content">
+    <p class="eyebrow">WE'LL WORK WITH YOU</p>
+
+    <h2>What To Expect</h2>
+
+    <p class="intro">
+      Our collaboration is built on transparency, efficiency, and measurable
+      results. Together, we create strategies tailored to your unique needs and
+      goals.
+    </p>
+
+    <ul>
+      <li>
+        <Checkmark />
+        <span>
+          Collaborate to build actionable strategies that drive sustainable
+          growth and deliver tangible outcomes.
+        </span>
+      </li>
+
+      <li>
+        <Checkmark />
+        <span>
+          Identify opportunities to optimize processes and implement impactful
+          solutions with measurable results.
+        </span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .what-to-expect {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+
+      max-width: 68rem;
+      width: calc(100% - 4rem);
+
+      margin-inline: auto;
+
+      padding-block: 6rem;
+    }
+
+    .expect-visual {
+      position: relative;
+    }
+
+    .expect-visual img {
+      display: block;
+      width: 100%;
+      max-width: 39.6rem;
+      aspect-ratio: 634 / 396;
+      object-fit: cover;
+      border-radius: 0.75rem;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .green-shape {
+      position: absolute;
+      width: 5rem;
+      height: 5rem;
+      top: -1rem;
+      left: -1rem;
+
+      background: #9ef2a8;
+      border-radius: 0.75rem;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .expect-content ul {
+      display: grid;
+      gap: 1rem;
+      padding: 0;
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+
+    .expect-content li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+
+    .expect-content li svg {
+      color: #9ef2a8;
+      width: 2rem;
+      height: 2rem;
+      margin-top: 0.2rem;
+    }
+  }
+</style>
