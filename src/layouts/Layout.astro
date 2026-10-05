@@ -19,15 +19,26 @@ import Footer from "@components/Footer.astro";
       @layer reset, global, tokens, components, overrides;
     </style>
   </head>
-  <body class="body">
+  <body class="page">
     <Header />
     <slot />
-    
     <Footer />
   </body>
 </html>
 
-<style>
-  .body
-  background-var(--color-neutrals-50) 
+<style is:global>
+  .page {
+    background: var(--color-neutrals-50);
+  }
+
+  .page > * {
+    grid-column: content-start / content-end;
+  }
+
+  .page > .full-bleed {
+    grid-column: full-start / full-end;
+
+    display: grid;
+    grid-template-columns: subgrid;
+  }
 </style>

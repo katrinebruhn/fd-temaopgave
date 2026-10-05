@@ -65,8 +65,8 @@ import MoneyIcon from "@icons/money.svg";
 <style>
   @layer components {
     .financial-projections {
-      max-width: 70rem;
-      width: calc(100% - 6rem);
+      max-width: 75rem;
+      width: calc(100% - 4rem);
       margin-inline: auto;
       padding-block: 6rem;
     }
@@ -123,6 +123,7 @@ import MoneyIcon from "@icons/money.svg";
       margin-top: 3rem;
 
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       scrollbar-width: none;
     }
@@ -132,10 +133,8 @@ import MoneyIcon from "@icons/money.svg";
     }
 
     .financial-card {
-      flex: 0 0 16rem;
-    }
-
-    .financial-card {
+      flex: 0 0 calc((100% - 2rem) / 3);
+      scroll-snap-align: start;
       background: #eef1f4;
       padding: 1.25rem;
       border-radius: 0.75rem;
@@ -166,18 +165,27 @@ import MoneyIcon from "@icons/money.svg";
   const nextButton = document.querySelector(".next-button");
 
   if (cards && prevButton && nextButton) {
-    const scrollAmount = 300;
+    const firstCard = cards.querySelector(".financial-card");
+
+    const getScrollAmount = () => {
+      if (!firstCard) return 0;
+
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(cards).gap) || 0;
+
+      return cardWidth + gap;
+    };
 
     prevButton.addEventListener("click", () => {
       cards.scrollBy({
-        left: -scrollAmount,
+        left: -getScrollAmount(),
         behavior: "smooth",
       });
     });
 
     nextButton.addEventListener("click", () => {
       cards.scrollBy({
-        left: scrollAmount,
+        left: getScrollAmount(),
         behavior: "smooth",
       });
     });
