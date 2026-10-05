@@ -53,7 +53,9 @@ const valueCards = [
     <section class="about-intro">
       <p class="about-label">ABOUT</p>
 
-      <h1>Igniting Innovation</h1>
+      <h1>
+        <span class="about-title-highlight">Igniting Innovation</span>
+      </h1>
 
       <p class="about-description">
         Our strength lies in the collaboration between our talented teams and
@@ -474,6 +476,42 @@ const valueCards = [
     .faq-header h2 {
       margin: 0;
       font-size: 1.8rem;
+    }
+
+    .about-title-highlight {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+    }
+
+    /* Streg bag selve teksten */
+    .about-title-highlight::before {
+      content: "";
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+
+      height: 0.2rem;
+      background: var(--color-action);
+
+      z-index: -1;
+    }
+
+    /* Streg videre mod højre */
+    .about-title-highlight::after {
+      content: "";
+      position: absolute;
+
+      left: 100%;
+      bottom: 0.08em;
+
+      width: 40rem;
+      height: 0.2rem;
+      background: var(--color-action);
+
+      z-index: -1;
     }
 
     /* Mobil */

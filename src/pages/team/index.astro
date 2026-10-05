@@ -12,7 +12,9 @@ console.log(team);
   <section class="team-hero">
     <p class="team-label">TEAM</p>
 
-    <h1>The Consultors</h1>
+    <h1>
+      <span class="team-title-highlight">The Consultors</span>
+    </h1>
 
     <p class="team-description">
       Our success stems from the synergy between dedicated teams and our valued
@@ -62,16 +64,34 @@ console.log(team);
       margin: 0;
     }
 
-    .team-hero h1::after {
+    .team-title-highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .team-title-highlight::before {
       content: "";
       position: absolute;
-      left: 50%;
-      bottom: -0.2rem;
-      transform: translateX(-50%);
-      width: 120%;
+
+      right: 100%;
+      bottom: 0.08em;
+
+      width: 40rem;
       height: 0.2rem;
-      background-color: var(--color-action);
-      z-index: -1;
+
+      background: var(--color-action);
+    }
+
+    .team-title-highlight::after {
+      content: "";
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+
+      height: 0.2rem;
+      background: var(--color-action);
     }
 
     .team-description {

@@ -26,7 +26,9 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
   <section class="case-hero">
     <p class="case-label">CASE STUDIES</p>
 
-    <h1>{caseName}</h1>
+    <h1>
+      <span class="case-title-highlight">{caseName}</span>
+    </h1>
 
     <p class="case-description">
       Our achievements reflect the close collaboration between our expert teams
@@ -290,6 +292,40 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
       font-size: 0.6rem;
       text-align: center;
       z-index: 1;
+    }
+
+    .case-title-highlight {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+    }
+
+    .case-title-highlight::before {
+      content: "";
+      position: absolute;
+
+      right: 100%;
+      bottom: 0.08em;
+
+      width: 40rem;
+      height: 0.2rem;
+
+      background: var(--color-action);
+      z-index: -1;
+    }
+
+    .case-title-highlight::after {
+      content: "";
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+
+      height: 0.2rem;
+
+      background: var(--color-action);
+      z-index: -1;
     }
 
     /* Mobil */

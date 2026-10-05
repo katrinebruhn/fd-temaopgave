@@ -4,55 +4,60 @@ const currentPath = Astro.url.pathname;
 
 <!-- ===== Header ===== -->
 <header class="site-header">
-  <a href="/" class="logo">
-    Ask<span>Experts</span>
-  </a>
-
-  <!-- Burgermenu -->
-  <button
-    type="button"
-    class="burger-button"
-    aria-label="Åbn menu"
-    aria-expanded="false"
-    aria-controls="primary-nav"
-  >
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <!-- Navigation -->
-  <nav id="primary-nav" aria-label="Primary navigation">
-    <a href="/" class:list={{ active: currentPath === "/" }}>Home</a>
-
-    <a
-      href="/case-studies/taxes-and-efficiency"
-      class:list={{ active: currentPath.startsWith("/case-studies") }}
-    >
-      Case Studies
+  <div class="header-inner">
+    <a href="/" class="logo">
+      Ask<span>Experts</span>
     </a>
 
-    <a href="/team" class:list={{ active: currentPath.startsWith("/team") }}>
-      Team
-    </a>
-
-    <a href="/about" class:list={{ active: currentPath.startsWith("/about") }}>
-      About
-    </a>
-
+    <!-- Burgermenu -->
     <button
       type="button"
-      class="mobile-login-button"
-      popovertarget="login-popover"
+      class="burger-button"
+      aria-label="Åbn menu"
+      aria-expanded="false"
+      aria-controls="primary-nav"
     >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="primary-nav" aria-label="Primary navigation">
+      <a href="/" class:list={{ active: currentPath === "/" }}>Home</a>
+
+      <a
+        href="/case-studies/taxes-and-efficiency"
+        class:list={{ active: currentPath.startsWith("/case-studies") }}
+      >
+        Case Studies
+      </a>
+
+      <a href="/team" class:list={{ active: currentPath.startsWith("/team") }}>
+        Team
+      </a>
+
+      <a
+        href="/about"
+        class:list={{ active: currentPath.startsWith("/about") }}
+      >
+        About
+      </a>
+
+      <button
+        type="button"
+        class="mobile-login-button"
+        popovertarget="login-popover"
+      >
+        Login
+      </button>
+    </nav>
+
+    <!-- Login -->
+    <button type="button" class="login-button" popovertarget="login-popover">
       Login
     </button>
-  </nav>
-
-  <!-- Login -->
-  <button type="button" class="login-button" popovertarget="login-popover">
-    Login
-  </button>
+  </div>
 </header>
 
 <!-- ===== Login popover ===== -->
@@ -77,13 +82,27 @@ const currentPath = Astro.url.pathname;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 1.5rem;
-    padding: 0.75rem max(2rem, calc((100% - 75rem) / 2));
+    padding: 0.75rem 2rem;
     background: var(--color-surface-elevated);
     color: var(--color-on-surface-elevated);
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: transform 0.3s ease;
+  }
+
+  .header-inner {
+    width: min(75rem, calc(100% - 4rem));
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+
+    padding-block: 0.75rem;
+    box-sizing: border-box;
+    position: relative;
   }
 
   .site-header.is-hidden {
@@ -234,8 +253,11 @@ const currentPath = Astro.url.pathname;
   /* ===== Mobil ===== */
   @media (max-width: 700px) {
     .site-header {
-      grid-template-columns: 1fr auto;
       position: relative;
+    }
+
+    .header-inner {
+      grid-template-columns: 1fr auto;
     }
 
     .burger-button {
