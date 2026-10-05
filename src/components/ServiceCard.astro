@@ -1,48 +1,88 @@
 ---
 const { service } = Astro.props;
+
 import ArrowRight from "@icons/arrow--right.svg";
+
+const Icon = service.icon;
 ---
 
 <article>
+  {
+    Icon && (
+      <div class="value-icon">
+        <Icon />
+      </div>
+    )
+  }
+
   <h2>{service.title}</h2>
   <p>{service.description}</p>
-  <a href="#0">{service.buttonText} <ArrowRight stroke-width={2.5} /></a>
-  <!-- <a> burde måske være en variant af en component -->
+
+  <a href="#0">
+    {service.buttonText}
+    <ArrowRight stroke-width={2.5} />
+  </a>
 </article>
 
 <style>
   @layer components {
     article {
-      background: rgba(16, 24, 40, 0.85);
-      color: var(--color-on-surface-elevated);
-      padding: 1rem;
+      background: var(--color-surface-primary);
+      color: var(--color-neutrals-900);
+      padding: 1.5rem 1.25rem;
       border-radius: 0.75rem;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 0.5rem;
+      border: 1px solid var(--color-neutrals-200);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
+
+    article a {
+      margin-top: 1rem;
+    }
+
     h2 {
+      margin: 0;
       font-size: 0.9rem;
       font-weight: 700;
     }
 
+    .value-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--color-neutrals-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .value-icon :global(svg) {
+      width: 1rem;
+      height: 1rem;
+      color: var(--color-surface-primary);
+    }
+
     p {
-      font-size: 0.75rem;
-      line-height: 1.4;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--color-text-muted);
     }
 
     a {
       display: inline-flex;
       align-items: center;
       gap: 1ch;
-
-      color: var(--color-action);
-      font-size: 0.75rem;
-      font-weight: bold;
+      color: var(--color-neutrals-900);
+      font-size: 1rem;
+      font-weight: 700;
     }
 
     a svg {
-      inline-size: 14px;
+      inline-size: 1rem;
     }
   }
 </style>

@@ -4,6 +4,9 @@ import { getTeamMembers } from "@lib/api";
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 
+import Instagram from "@icons/instagram.svg";
+import Facebook from "@icons/facebook.svg";
+
 export async function getStaticPaths() {
   const team = await getTeamMembers();
 
@@ -17,14 +20,170 @@ const { employee } = Astro.props;
 ---
 
 <Layout>
-  <Image
-    src={employee.image.src}
-    alt={employee.image.alt}
-    width={employee.image.width}
-    height={employee.image.height}
-  />
-  <h2>{employee.name}</h2>
-  <p>{employee.description_long}</p>
-  <h3>Past Experience</h3>
-  <p>{employee.past_experience}</p>
+  <div class="back-wrapper">
+    <a href="/team" class="back-button">← Back to team</a>
+  </div>
+
+  <section class="team-member-page">
+    <div class="team-member-visual">
+      <div class="team-member-image">
+        <div class="green-shape"></div>
+
+        <Image
+          style={`view-transition-name: img-${employee.slug}`}
+          src={employee.image.src}
+          alt={employee.image.alt}
+          width={employee.image.width}
+          height={employee.image.height}
+        />
+      </div>
+
+      <div class="member-socials">
+        {
+          employee.social_links.map((social: any) => (
+            <a href={social.url} aria-label={social.platform}>
+              {social.icon === "instagram" && <Instagram />}
+              {social.icon === "facebook" && <Facebook />}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="team-member-content">
+      <h1>{employee.name}</h1>
+      <p class="member-title">{employee.title}</p>
+
+      <p class="description">
+        {employee.description_long}
+      </p>
+
+      <div class="past-experience">
+        <h2>Past Experience</h2>
+        <p>{employee.past_experience}</p>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  @layer components {
+    .team-member-page {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+
+      max-width: 56rem;
+      width: calc(100% - 8rem);
+      margin-inline: auto;
+      padding-block: 4rem 5rem;
+    }
+
+    .team-member-image img {
+      display: block;
+      max-height: 30rem;
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      border-radius: 0.75rem;
+    }
+
+    .team-member-content h1 {
+      font-size: 2.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .description {
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+
+    .past-experience {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-surface-tertiary);
+    }
+
+    .past-experience h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .past-experience p {
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+
+    .member-title {
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    .back-wrapper {
+      max-width: 56rem;
+      width: calc(100% - 8rem);
+      margin-inline: auto;
+      padding-top: 2rem;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+
+      background: var(--color-ui-primary);
+      color: var(--color-on-ui-primary);
+
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .team-member-image {
+      position: relative;
+    }
+
+    .team-member-image img {
+      position: relative;
+      z-index: 2;
+    }
+
+    .green-shape {
+      position: absolute;
+      top: -1.25rem;
+      left: -1.25rem;
+
+      width: 6rem;
+      height: 6rem;
+
+      background: var(--color-ui-secondary);
+      border-radius: 0.75rem;
+
+      z-index: 1;
+    }
+
+    .member-socials {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .member-socials a {
+      color: var(--color-text);
+      display: flex;
+    }
+
+    .member-socials svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+</style>

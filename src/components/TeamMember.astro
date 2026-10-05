@@ -11,34 +11,37 @@ import Facebook from "../icons/facebook.svg";
 ---
 
 <article class="team-member">
-  <div class="team-member-image">
-    <img
-      src={imageSrc}
-      alt={imageAlt}
-      width={imageWidth}
-      height={imageHeight}
-    />
-  </div>
-
-  <div class="team-member-content">
-    <h3>{employee.name}</h3>
-
-    {showTitle && <p class="about-member-title">{employee.title}</p>}
-
-    <p class="team-member-description">
-      {employee.description}
-    </p>
-
-    <div class="social-links">
-      {
-        employee.social_links.map((social: any) => (
-          <a href={social.url} aria-label={social.platform}>
-            {social.icon === "instagram" && <Instagram />}
-            {social.icon === "facebook" && <Facebook />}
-          </a>
-        ))
-      }
+  <a href={`/team/${employee.slug}`} class="team-member-link">
+    <div class="team-member-image">
+      <img
+        style={`view-transition-name: img-${employee.slug}`}
+        src={imageSrc}
+        alt={imageAlt}
+        width={imageWidth}
+        height={imageHeight}
+      />
     </div>
+
+    <div class="team-member-content">
+      <h3>{employee.name}</h3>
+
+      {showTitle && <p class="about-member-title">{employee.title}</p>}
+
+      <p class="team-member-description">
+        {employee.description}
+      </p>
+    </div>
+  </a>
+
+  <div class="social-links">
+    {
+      employee.social_links.map((social: any) => (
+        <a href={social.url} aria-label={social.platform}>
+          {social.icon === "instagram" && <Instagram />}
+          {social.icon === "facebook" && <Facebook />}
+        </a>
+      ))
+    }
   </div>
 </article>
 
@@ -110,6 +113,32 @@ import Facebook from "../icons/facebook.svg";
       margin: 0 0 0.5rem;
       font-size: 0.7rem;
       font-weight: 525;
+    }
+
+    .team-member-link {
+      display: block;
+      width: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .team-member-link:hover h3 {
+      text-decoration: underline;
+    }
+
+    /* Mobil */
+    @media (max-width: 700px) {
+      .team-member-image {
+        width: 60%;
+      }
+      .team-member-content h3 {
+        font-size: 1.5rem;
+      }
+
+      .team-member-description {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
     }
   }
 </style>

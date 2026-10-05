@@ -12,7 +12,9 @@ console.log(team);
   <section class="team-hero">
     <p class="team-label">TEAM</p>
 
-    <h1>The Consultants</h1>
+    <h1>
+      <span class="team-title-highlight">The Consultors</span>
+    </h1>
 
     <p class="team-description">
       Our success stems from the synergy between dedicated teams and our valued
@@ -62,23 +64,41 @@ console.log(team);
       margin: 0;
     }
 
-    .team-hero h1::after {
+    .team-title-highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .team-title-highlight::before {
       content: "";
       position: absolute;
-      left: 50%;
-      bottom: -0.2rem;
-      transform: translateX(-50%);
-      width: 120%;
+
+      right: 100%;
+      bottom: 0.08em;
+
+      width: 40rem;
       height: 0.2rem;
-      background-color: var(--color-action);
-      z-index: -1;
+
+      background: var(--color-action);
+    }
+
+    .team-title-highlight::after {
+      content: "";
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+
+      height: 0.2rem;
+      background: var(--color-action);
     }
 
     .team-description {
       max-width: 32rem;
       margin: 2rem auto 0;
-      font-size: 0.8rem;
-      line-height: 1.5;
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
       color: var(--color-text-muted);
     }
     .team-section {
@@ -89,7 +109,6 @@ console.log(team);
     .team-intro {
       max-width: 56rem;
       margin: 0 auto;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -101,6 +120,8 @@ console.log(team);
     }
 
     .team-intro h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
       margin: 0 0 0.75rem;
       color: var(--color-text);
     }
@@ -127,6 +148,56 @@ console.log(team);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 3rem 1.5rem;
+    }
+    @media (max-width: 700px) {
+      .team-hero {
+        padding: 3rem 1.5rem;
+      }
+
+      .team-hero h1 {
+        font-size: 2rem;
+      }
+
+      .team-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .team-intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .team-intro > div {
+        max-width: 100%;
+      }
+
+      .team-members {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+
+      /* Medarbejderne venstrestilles på mobil */
+      .team-members :global(.team-member) {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .team-members :global(.team-member-image) {
+        width: 60%;
+      }
+      .team-members :global(.team-member-description) {
+        max-width: 22rem;
+      }
+      .team-members :global(.team-member-content) {
+        width: 100%;
+        text-align: left;
+      }
+
+      .team-members :global(.social-links) {
+        justify-content: flex-start;
+      }
     }
   }
 </style>
