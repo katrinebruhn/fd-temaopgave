@@ -30,6 +30,7 @@ const { employee } = Astro.props;
         <div class="green-shape"></div>
 
         <Image
+          style={`view-transition-name: img-${employee.slug}`}
           src={employee.image.src}
           alt={employee.image.alt}
           width={employee.image.width}

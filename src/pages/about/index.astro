@@ -21,28 +21,28 @@ const valueCards = [
     description:
       "Explore innovative strategies tailored to your goals. Unlock unique solutions that inspire growth and creativity. Drive impactful change.",
     buttonText: "Read More",
-    icon: Layers.src,
+    icon: Layers,
   },
   {
     title: "Best Features",
     description:
       "Deliver advanced tools designed for seamless integration. Optimize workflows with cutting-edge technology.",
     buttonText: "Read More",
-    icon: Bars.src,
+    icon: Bars,
   },
   {
     title: "Experience",
     description:
       "Leverage years of proven expertise across diverse industries. Empower your business with our skilled professionals. Achieve sustainable success.",
     buttonText: "Read More",
-    icon: Globe.src,
+    icon: Globe,
   },
   {
     title: "Easy Solutions",
     description:
       "Streamline your challenges with simple, effective solutions. Ensure hassle-free implementation for measurable results.",
     buttonText: "Read More",
-    icon: Gear.src,
+    icon: Gear,
   },
 ];
 ---
@@ -423,11 +423,15 @@ const valueCards = [
     }
 
     .about-team .team-members :global(.team-member) {
+      text-align: left;
+      align-items: stretch;
+    }
+
+    .about-team .team-members :global(.team-member-link) {
       display: grid;
       grid-template-columns: 10rem 1fr;
       gap: 1rem;
       align-items: center;
-      text-align: left;
     }
 
     .about-team .team-members :global(.team-member-image img) {

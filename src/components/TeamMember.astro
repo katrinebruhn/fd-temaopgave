@@ -14,6 +14,7 @@ import Facebook from "../icons/facebook.svg";
   <a href={`/team/${employee.slug}`} class="team-member-link">
     <div class="team-member-image">
       <img
+        style={`view-transition-name: img-${employee.slug}`}
         src={imageSrc}
         alt={imageAlt}
         width={imageWidth}

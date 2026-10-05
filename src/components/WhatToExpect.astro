@@ -113,5 +113,28 @@ import Checkmark from "@icons/checkmark.svg";
       height: 2rem;
       margin-top: 0.2rem;
     }
+
+    /* Mobil */
+    @media (max-width: 700px) {
+      .what-to-expect {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        width: calc(100% - 3rem);
+        padding-block: 4rem;
+      }
+
+      .expect-visual {
+        width: 100%;
+      }
+
+      .expect-visual img {
+        width: 100%;
+        max-width: none;
+      }
+
+      .expect-content {
+        width: 100%;
+      }
+    }
   }
 </style>
